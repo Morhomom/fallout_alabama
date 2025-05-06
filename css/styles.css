@@ -5,10 +5,12 @@ body {
     font-family: 'Courier New', Courier, monospace; /* Fallout styl písma */
     margin: 0;
     padding: 0;
+    text-shadow: 0 0 5px #0f0, 0 0 10px #0f0, 0 0 20px #0f0;
 }
 
 h1 {
     text-align: center;
+    font-size: 28px;
 }
 
 .character-selection img {
@@ -570,7 +572,7 @@ ul > li.nav-item.active > a.nav-link {
 /* Zajištění správného zobrazení na malých obrazovkách */
 @media (max-width: 768px) {
     h1 {
-        font-size: 24px;
+        font-size: 20px;
     }
 
     .song-container h5 {
@@ -579,6 +581,15 @@ ul > li.nav-item.active > a.nav-link {
 
     .video-container iframe {
         height: 180px; /* Menší výška přehrávače na telefonech */
+    }
+
+    .navbar-nav {
+        flex-direction: column; /* Navigace na telefonu jako sloupec */
+        text-align: center;
+    }
+
+    .nav-link {
+        padding: 10px 0;
     }
 }
 
@@ -605,4 +616,9 @@ ul > li.nav-item.active > a.nav-link {
 .song-container iframe {
     border-radius: 8px;
     border: 1px solid #ccc;
+}
+
+p {
+    font-size: 14px;
+    text-align: center;
 }
