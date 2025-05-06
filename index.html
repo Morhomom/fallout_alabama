@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fallout App - Login</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <div id="intro-video">
+        <video autoplay playsinline id="intro" width="100%">
+            <source src="assets/intro.mp4" type="video/mp4">
+            Váš prohlížeč nepodporuje přehrávání videa.
+        </video>
+    </div>
+
+    <h1>Vyberte svou postavu</h1>
+    <div class="character-selection">
+        <div class="character">
+            <img src="assets/engineer.webp" alt="Engineer" onclick="selectRole('Engineer')">
+            <p>Engineer</p>
+        </div>
+        <div class="character">
+            <img src="assets/ranger.webp" alt="Ranger" onclick="selectRole('Ranger')">
+            <p>Ranger</p>
+        </div>
+        <div class="character">
+            <img src="assets/overseer.webp" alt="Overseer" onclick="selectRole('Overseer')">
+            <p>Overseer</p>
+        </div>
+        <div class="character">
+            <img src="assets/lucky.webp" alt="L.U.C.K.Y" onclick="selectRole('L.U.C.K.Y')">
+            <p>L.U.C.K.Y</p>
+        </div>
+        <div class="character">
+            <img src="assets/broadcaster.webp" alt="Broadcaster" onclick="selectRole('Broadcaster')">
+            <p>Broadcaster</p>
+        </div>
+        <div class="character">
+            <img src="assets/medic.webp" alt="Medic" onclick="selectRole('Medic')">
+            <p>Medic</p>
+        </div>
+        <div class="character">
+            <img src="assets/science.webp" alt="Science" onclick="selectRole('Science')">
+            <p>Science</p>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
