@@ -1,25 +1,24 @@
-const characters = [
-    { id: 'Engineer', name: 'Engineer', hp: 90, ap: 70, currency: 100, inventory: [] },
-    { id: 'Ranger', name: 'Ranger', hp: 80, ap: 60, currency: 50, inventory: [] },
-    { id: 'Overseer', name: 'Overseer', hp: 100, ap: 100, currency: 200, inventory: [] },
-    // Další postavy...
-];
+import characters from '../backend/data/players.js'; // Import dat z players.js
 
 export default function handler(req, res) {
+    const { id } = req.query;
+
     if (req.method === 'GET') {
-        const { id } = req.query;
         if (id) {
             const character = characters.find(c => c.id === id);
-            if (!character) return res.status(404).json({ error: 'Character not found' });
+            if (!character) {
+                return res.status(404).json({ error: 'Character not found' });
+            }
             return res.status(200).json(character);
         }
         return res.status(200).json(characters);
     }
 
     if (req.method === 'PATCH') {
-        const { id } = req.query;
         const character = characters.find(c => c.id === id);
-        if (!character) return res.status(404).json({ error: 'Character not found' });
+        if (!character) {
+            return res.status(404).json({ error: 'Character not found' });
+        }
 
         const { hp, ap, currency } = req.body;
         if (hp !== undefined) character.hp = hp;
@@ -29,5 +28,6 @@ export default function handler(req, res) {
         return res.status(200).json(character);
     }
 
-    res.status(405).json({ error: 'Method not allowed' });
+    res.setHeader('Allow', ['GET', 'PATCH']);
+    res.status(405).json({ error: `Method ${req.method} not allowed` });
 }
