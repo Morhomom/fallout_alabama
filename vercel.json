@@ -1,10 +1,8 @@
 {
-    "projects": {
-      "frontend": {
-        "root": "./frontend"
-      },
-      "backend": {
-        "root": "./backend"
+    "rewrites": [
+      {
+        "source": "/api/:path*",
+        "destination": "/backend/api/:path*"
       }
-    }
+    ]
   }
