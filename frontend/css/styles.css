@@ -622,3 +622,36 @@ p {
     font-size: 14px;
     text-align: center;
 }
+
+#data-section {
+    background-color: #222;
+    color: #0f0;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.player-item {
+    border: 1px solid #0f0;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.player-item h3 {
+    margin: 0;
+}
+
+.player-item button {
+    margin-right: 5px;
+    background-color: #0f0;
+    color: #222;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.player-item button:hover {
+    background-color: #0c0;
+}

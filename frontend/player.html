@@ -27,7 +27,7 @@
                     <a class="nav-link" href="inv.html">INV</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">DATA</a>
+                    <a class="nav-link" href="#data-section" data-bs-toggle="tab">DATA</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">MAP</a>
@@ -221,12 +221,18 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" id="perks" role="tabpanel"></div>
+                    <div class="tab-pane fade" id="data-section" role="tabpanel">
+                        <h2>Player Management (Overseer)</h2>
+                        <div id="player-list">
+                            <!-- Seznam hráčů bude dynamicky generován zde -->
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-
+    
     <nav class="navbar-expand stat-footer">
         <div class="row">
             <div class="col-3">
@@ -251,6 +257,7 @@
             crossorigin="anonymous"></script>
     <script src="special.js" async defer></script>
     <script src="js/player.js"></script>
+    <script src="js/overseer.js"></script>
 </body>
 
 </html>
