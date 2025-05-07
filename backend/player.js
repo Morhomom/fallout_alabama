@@ -1,5 +1,4 @@
 async function loadPlayerData() {
-    // Načtení ID postavy z localStorage
     const playerId = localStorage.getItem('selectedRole');
     if (!playerId) {
         console.error('No player ID found in localStorage');
@@ -7,7 +6,6 @@ async function loadPlayerData() {
     }
 
     try {
-        // Načtení dat postavy z backendu
         const response = await fetch(`/api/characters/${playerId}`);
         if (!response.ok) {
             throw new Error('Failed to fetch player data');
@@ -16,10 +14,27 @@ async function loadPlayerData() {
         const player = await response.json();
 
         // Aktualizace DOM s daty postavy
-        document.querySelector('.username span').innerText = player.name;
-        document.querySelector('.stat-footer .col-3:first-child').innerText = `HP ${player.hp}/${player.hp}`;
-        document.querySelector('.stat-footer .col-3:last-child').innerText = `AP ${player.ap}/${player.ap}`;
-        document.querySelector('.level-progress-bar-footer').style.width = `${player.hp}%`;
+        const usernameElement = document.querySelector('.username span');
+        if (usernameElement) {
+            usernameElement.innerText = player.name;
+        } else {
+            console.error('Element .username span not found in DOM');
+        }
+
+        const hpElement = document.querySelector('.stat-footer .col-3:first-child');
+        if (hpElement) {
+            hpElement.innerText = `HP ${player.hp}/${player.hp}`;
+        }
+
+        const apElement = document.querySelector('.stat-footer .col-3:last-child');
+        if (apElement) {
+            apElement.innerText = `AP ${player.ap}/${player.ap}`;
+        }
+
+        const progressBarElement = document.querySelector('.level-progress-bar-footer');
+        if (progressBarElement) {
+            progressBarElement.style.width = `${player.hp}%`;
+        }
     } catch (error) {
         console.error('Error loading player data:', error);
     }
