@@ -133,7 +133,7 @@ function showTab(tabId) {
     activeTab.style.display = 'block';
   }
 
-  // Nastavíme aktivní třídu pouze v rámci interní navigace "overseer-tabs"
+  // Nastavíme aktivní třídu v rámci interní navigace "overseer-tabs"
   const tabNav = document.getElementById('overseer-tabs');
   if (tabNav) {
     const navLinks = tabNav.querySelectorAll('.nav-link');
@@ -146,7 +146,7 @@ function showTab(tabId) {
     }
   }
 
-  // Podnabídku zobrazíme pouze, pokud je aktivní záložka "status"
+  // Podnabídku ("sub-nav") zobrazíme pouze, pokud je aktivní záložka "status"
   const subNav = document.getElementById('sub-nav');
   if (subNav) {
     subNav.style.display = (tabId === 'status') ? 'block' : 'none';

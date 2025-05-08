@@ -2,7 +2,7 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!-<![endif]-->
 <html lang="en">
 
 <head>
@@ -25,26 +25,24 @@
             </ul>
         </div>
     </nav>
-    
     <div class="container">
         <div class="row">
             <div class="col-12">
                 <!-- Interní záložková navigace pro overseera -->
                 <ul class="nav nav-tabs" id="overseer-tabs">
                     <li class="nav-item">
-                        <a class="nav-link active" onclick="showTab('status')">STATUS</a>
+                        <a class="nav-link active" href="#status" onclick="showTab('status')">STATUS</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" onclick="showTab('special')">SPECIAL</a>
+                        <a class="nav-link" href="#special" onclick="showTab('special')">SPECIAL</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" onclick="showTab('perks')">PERKS</a>
+                        <a class="nav-link" href="#perks" onclick="showTab('perks')">PERKS</a>
                     </li>
                 </ul>
-                
-                <!-- Podnabídka, která se zobrazí pouze u záložky STATUS -->
-                <div id="sub-nav" style="display: block; margin-top:10px;">
-                    <!-- Zde vložte odkazy či ovládací prvky, které se mají zobrazovat jen u STATUS -->
+
+                <!-- Podnabídka – zobrazuje se pouze u záložky STATUS -->
+                <div id="sub-nav" style="display: block; margin-top: 10px;">
                     <ul class="nav">
                         <li class="nav-item">
                             <a class="nav-link active" href="#extra1">Extra 1</a>
@@ -55,29 +53,113 @@
                     </ul>
                 </div>
 
-                <!-- Obsah jednotlivých záložek -->
                 <div id="status" class="tab-content">
                     <div class="center-image">
                         <img src="assets/boywalking.gif" alt="Vault Boy Image">
                     </div>
                     <div class="stat-bars">
-                        <!-- Obsah pro stat-bars (grafy, progress bary apod.) -->
                         <div class="row">
                             <div class="col-12">
                                 <div class="stat-bar">
                                     <div class="level-progress">
                                         <div class="level-progress-bar w-30" width="50%">
+                                            <!-- Případný obsah -->
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- Další řádky s obsahy... -->
+
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="stat-bar">
+                                    <div class="level-progress">
+                                        <div class="level-progress-bar w-70" width="50%">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6"></div>
+                            <div class="col-3">
+                                <div class="stat-bar">
+                                    <div class="level-progress">
+                                        <div class="level-progress-bar w-10" width="50%">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="stat-bar">
+                                    <div class="level-progress">
+                                        <div class="level-progress-bar w-90" width="50%">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6"></div>
+                            <div class="col-3">
+                                <div class="stat-bar">
+                                    <div class="level-progress">
+                                        <div class="level-progress-bar w-50" width="50%">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="stat-bar">
+                                    <div class="level-progress">
+                                        <div class="level-progress-bar w-100" width="50%">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row stat-numbers">
+                        <div class="col-2 transparent"></div>
+                        <div class="col-2">
+                            <img src="img/stat/pistol.png" alt="Gun Icon" class="img-responsive">
+                        </div>
+                        <div class="col-1">
+                            <div class="icon">
+                                <img src="img/stat/crosshair.png" alt="Crosshair Icon" class="sm-img img-responsive">
+                            </div>
+                            <div class="points">18</div>
+                        </div>
+                        <div class="col-1 transparent"></div>
+                        <div class="col-2">
+                            <img src="img/stat/military_hat.png" alt="Helmet Icon" class="img-responsive">
+                        </div>
+                        <div class="col-1">
+                            <div class="icon">
+                                <img src="img/stat/lightningbolt.png" alt="Bolt Icon" class="md-img img-responsive">
+                            </div>
+                            <div class="points">11</div>
+                        </div>
+                        <div class="col-1">
+                            <div class="icon">
+                                <img src="img/stat/radioactive.png" alt="Radioactive Icon" class="md-img img-responsive">
+                            </div>
+                            <div class="points">10</div>
+                        </div>
+                        <div class="col-2 transparent"></div>
                     </div>
                     <div class="username">
                         <span>ErR0rC0dE141</span>
                     </div>
                 </div>
+
                 <div id="special" class="tab-content" style="display: none;">
                     <ul class="spc-list">
                         <li>
@@ -126,7 +208,7 @@
 
                     <div class="special-showcase">
                         <div class="item-image">
-                            <!-- Může jít o obrázek nebo jiný obsah -->
+
                         </div>
                     </div>
 
@@ -146,6 +228,7 @@
             </div>
         </div>
     </div>
+
 
     <nav class="navbar-expand stat-footer">
         <div class="row">
