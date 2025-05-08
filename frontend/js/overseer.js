@@ -101,3 +101,21 @@ function cancelEdit(playerId, hp, ap, currency) {
 
 // Načtení hráčů při načtení stránky
 window.onload = loadPlayers;
+
+document.addEventListener('DOMContentLoaded', function () {
+    const tabLinks = document.querySelectorAll('[data-bs-toggle="tab"]');
+    tabLinks.forEach(function (tabLink) {
+        const targetId = tabLink.getAttribute('href').replace('#', '');
+        const targetElement = document.getElementById(targetId);
+
+        if (targetElement) {
+            tabLink.addEventListener('click', function (event) {
+                event.preventDefault();
+                const tabTrigger = new bootstrap.Tab(tabLink);
+                tabTrigger.show();
+            });
+        } else {
+            console.error(`Target element with ID "${targetId}" not found.`);
+        }
+    });
+});
