@@ -37,6 +37,17 @@ function generateNavigation() {
     a.href = item.page;
     a.textContent = item.name;
 
+    // Přidáme listener – pokud je aktuální stránka shodná s cílovým odkazem,
+    // zabráníme reloadu
+    a.addEventListener('click', function(e) {
+      // window.location.pathname může obsahovat také cestu, proto použijeme endsWith
+      if(window.location.pathname.endsWith(item.page)) {
+        e.preventDefault();
+        // Zde můžete případně zavolat funkci, která přepne obsah v rámci stránky
+        // například: showTab('status') nebo jinou podle potřeby
+      }
+    });
+
     // Nastavení aktivní třídy pro aktuální stránku
     if (window.location.pathname.includes(item.page)) {
       a.classList.add('active');
