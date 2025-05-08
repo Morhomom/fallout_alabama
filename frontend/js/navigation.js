@@ -7,17 +7,19 @@ function generateNavigation() {
     return;
   }
 
-  // Definujeme seznam navigačních položek a jejich šablonové názvy souborů
-  const navItems = [
-    { name: 'STAT', page: 'stat' },
-    { name: 'INV', page: 'inv' },
-    { name: 'DATA', page: 'data' },
-    { name: 'MAP', page: 'map' },
-    { name: 'RADIO', page: 'radio' },
-  ];
+  // Pokud je role Overseer, specifikujeme explicitní mapování stránek
+  const pages = role === 'Overseer'
+    ? { STAT: 'overseer.html', INV: 'overseer.html', DATA: 'overseer.html', MAP: 'overseer.html', RADIO: 'radio.html' }
+    : { STAT: 'stat.html', INV: 'inv.html', DATA: 'data.html', MAP: 'map.html', RADIO: 'radio.html' };
 
-  // Pokud je role Overseer, předponu upravíme (např. "-overseer")
-  const suffix = role === 'Overseer' ? '-overseer' : '';
+  // Definujeme navigační položky
+  const navItems = [
+    { name: 'STAT', page: pages.STAT },
+    { name: 'INV', page: pages.INV },
+    { name: 'DATA', page: pages.DATA },
+    { name: 'MAP', page: pages.MAP },
+    { name: 'RADIO', page: pages.RADIO },
+  ];
 
   const navContainer = document.getElementById('dynamic-nav');
   if (!navContainer) {
@@ -32,11 +34,11 @@ function generateNavigation() {
 
     const a = document.createElement('a');
     a.className = 'nav-link';
-    a.href = `${item.page}${suffix}.html`;
+    a.href = item.page;
     a.textContent = item.name;
 
     // Nastavení aktivní třídy pro aktuální stránku
-    if (window.location.pathname.includes(`${item.page}${suffix}.html`)) {
+    if (window.location.pathname.includes(item.page)) {
       a.classList.add('active');
     }
 
