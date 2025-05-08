@@ -2,7 +2,7 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!-<![endif]-->
 <html lang="en">
 
 <head>
@@ -27,7 +27,7 @@
                     <a class="nav-link" href="inv.html">INV</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#data-section" data-bs-toggle="tab">DATA</a>
+                    <a class="nav-link" onclick="showTab('data-section')">DATA</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">MAP</a>
@@ -41,188 +41,188 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <ul class="nav nav-tabs" id="myTab">
+                <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#status" data-bs-toggle="tab" role="tab">STATUS</a>
+                        <a class="nav-link active" onclick="showTab('status')">STATUS</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#special" data-bs-toggle="tab">SPECIAL</a>
+                        <a class="nav-link" onclick="showTab('special')">SPECIAL</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#perks" data-bs-toggle="tab">PERKS</a>
+                        <a class="nav-link" onclick="showTab('perks')">PERKS</a>
                     </li>
                 </ul>
 
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="status" role="tabpanel">
-                        <div class="center-image">
-                            <img src="assets/boywalking.gif" alt="Vault Boy Image">
-                        </div>
-                        <div class="stat-bars">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="stat-bar">
-                                        <div class="level-progress">
-                                            <div class="level-progress-bar w-30" width="50%">
+                <div id="status" class="tab-content">
+                    <div class="center-image">
+                        <img src="assets/boywalking.gif" alt="Vault Boy Image">
+                    </div>
+                    <div class="stat-bars">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="stat-bar">
+                                    <div class="level-progress">
+                                        <div class="level-progress-bar w-30" width="50%">
 
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-3">
-                                    <div class="stat-bar">
-                                        <div class="level-progress">
-                                            <div class="level-progress-bar w-70" width="50%">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-6"></div>
-                                <div class="col-3">
-                                    <div class="stat-bar">
-                                        <div class="level-progress">
-                                            <div class="level-progress-bar w-10" width="50%">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-3">
-                                    <div class="stat-bar">
-                                        <div class="level-progress">
-                                            <div class="level-progress-bar w-90" width="50%">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-6"></div>
-                                <div class="col-3">
-                                    <div class="stat-bar">
-                                        <div class="level-progress">
-                                            <div class="level-progress-bar w-50" width="50%">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="stat-bar">
-                                        <div class="level-progress">
-                                            <div class="level-progress-bar w-100" width="50%">
-
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row stat-numbers">
-                            <div class="col-2 transparent"></div>
-                            <div class="col-2">
-                                <img src="img/stat/pistol.png" alt="Gun Icon" class="img-responsive">
-                            </div>
-                            <div class="col-1">
-                                <div class="icon">
-                                    <img src="img/stat/crosshair.png" alt="Crosshair Icon" class="sm-img img-responsive">
+
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="stat-bar">
+                                    <div class="level-progress">
+                                        <div class="level-progress-bar w-70" width="50%">
+
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="points">18</div>
                             </div>
-                            <div class="col-1 transparent"></div>
-                            <div class="col-2">
-                                <img src="img/stat/military_hat.png" alt="Helmet Icon" class="img-responsive">
-                            </div>
-                            <div class="col-1">
-                                <div class="icon">
-                                    <img src="img/stat/lightningbolt.png" alt="Bolt Icon" class="md-img img-responsive">
+                            <div class="col-6"></div>
+                            <div class="col-3">
+                                <div class="stat-bar">
+                                    <div class="level-progress">
+                                        <div class="level-progress-bar w-10" width="50%">
+
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="points">11</div>
                             </div>
-                            <div class="col-1">
-                                <div class="icon">
-                                    <img src="img/stat/radioactive.png" alt="Radioactive Icon" class="md-img img-responsive">
-                                </div>
-                                <div class="points">10</div>
-                            </div>
-                            <div class="col-2 transparent"></div>
                         </div>
-                        <div class="username">
-                            <span>ErR0rC0dE141</span>
+
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="stat-bar">
+                                    <div class="level-progress">
+                                        <div class="level-progress-bar w-90" width="50%">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6"></div>
+                            <div class="col-3">
+                                <div class="stat-bar">
+                                    <div class="level-progress">
+                                        <div class="level-progress-bar w-50" width="50%">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="stat-bar">
+                                    <div class="level-progress">
+                                        <div class="level-progress-bar w-100" width="50%">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row stat-numbers">
+                        <div class="col-2 transparent"></div>
+                        <div class="col-2">
+                            <img src="img/stat/pistol.png" alt="Gun Icon" class="img-responsive">
+                        </div>
+                        <div class="col-1">
+                            <div class="icon">
+                                <img src="img/stat/crosshair.png" alt="Crosshair Icon" class="sm-img img-responsive">
+                            </div>
+                            <div class="points">18</div>
+                        </div>
+                        <div class="col-1 transparent"></div>
+                        <div class="col-2">
+                            <img src="img/stat/military_hat.png" alt="Helmet Icon" class="img-responsive">
+                        </div>
+                        <div class="col-1">
+                            <div class="icon">
+                                <img src="img/stat/lightningbolt.png" alt="Bolt Icon" class="md-img img-responsive">
+                            </div>
+                            <div class="points">11</div>
+                        </div>
+                        <div class="col-1">
+                            <div class="icon">
+                                <img src="img/stat/radioactive.png" alt="Radioactive Icon" class="md-img img-responsive">
+                            </div>
+                            <div class="points">10</div>
+                        </div>
+                        <div class="col-2 transparent"></div>
+                    </div>
+                    <div class="username">
+                        <span>ErR0rC0dE141</span>
+                    </div>
+                </div>
+
+                <div id="special" class="tab-content" style="display: none;">
+                    <ul class="spc-list">
+                        <li>
+                            <a href="#" class="sp-strength">
+                                Strength
+                                <span class="pull-right">4</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="sp-perception">
+                                Perception
+                                <span class="pull-right">4</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="sp-endurance">
+                                Endurance
+                                <span class="pull-right">4</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="sp-charisma">
+                                Charisma
+                                <span class="pull-right">3</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="sp-intelligence">
+                                Intelligence
+                                <span class="pull-right">3</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="sp-agility">
+                                Agility
+                                <span class="pull-right">3</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="sp-luck">
+                                Luck
+                                <span class="pull-right">2</span>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="special-showcase">
+                        <div class="item-image">
+
                         </div>
                     </div>
 
-                    <div class="tab-pane fade" id="special" role="tabpanel">
-                        <ul class="spc-list">
-                            <li>
-                                <a href="#" class="sp-strength">
-                                    Strength
-                                    <span class="pull-right">4</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="sp-perception">
-                                    Perception
-                                    <span class="pull-right">4</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="sp-endurance">
-                                    Endurance
-                                    <span class="pull-right">4</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="sp-charisma">
-                                    Charisma
-                                    <span class="pull-right">3</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="sp-intelligence">
-                                    Intelligence
-                                    <span class="pull-right">3</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="sp-agility">
-                                    Agility
-                                    <span class="pull-right">3</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="sp-luck">
-                                    Luck
-                                    <span class="pull-right">2</span>
-                                </a>
-                            </li>
-                        </ul>
-
-                        <div class="special-showcase">
-                            <div class="item-image">
-
-                            </div>
-                        </div>
-
-                        <div class="special-description">
-                            <span class="desc"></span>
-                        </div>
+                    <div class="special-description">
+                        <span class="desc"></span>
                     </div>
-                    <div class="tab-pane fade" id="perks" role="tabpanel"></div>
-                    <div class="tab-pane fade" id="data-section" role="tabpanel">
-                        <h2>Player Management (Overseer)</h2>
-                        <div id="player-list">
-                            <!-- Seznam hráčů bude dynamicky generován zde -->
-                        </div>
+                </div>
+                <div id="perks" class="tab-content" style="display: none;">
+                    <h2>Perks Content</h2>
+                </div>
+                <div id="data-section" class="tab-content" style="display: none;">
+                    <h2>Player Management (Overseer)</h2>
+                    <div id="player-list">
+                        <!-- Seznam hráčů bude dynamicky generován zde -->
                     </div>
                 </div>
             </div>

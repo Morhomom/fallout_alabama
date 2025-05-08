@@ -119,3 +119,28 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
+function showTab(tabId) {
+    // Skryje všechny záložky
+    const tabs = document.querySelectorAll('.tab-content');
+    tabs.forEach(tab => {
+        tab.style.display = 'none';
+    });
+
+    // Zobrazí aktivní záložku
+    const activeTab = document.getElementById(tabId);
+    if (activeTab) {
+        activeTab.style.display = 'block';
+    }
+
+    // Nastaví aktivní třídu na aktuální záložku
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+    });
+
+    const activeLink = document.querySelector(`.nav-link[onclick="showTab('${tabId}')"]`);
+    if (activeLink) {
+        activeLink.classList.add('active');
+    }
+}
