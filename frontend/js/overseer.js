@@ -121,21 +121,38 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function showTab(tabId) {
+  // Skryjeme všechny tab obsahy
   const tabs = document.querySelectorAll('.tab-content');
   tabs.forEach(tab => {
     tab.style.display = 'none';
   });
+  
+  // Zobrazíme vybraný tab
   const activeTab = document.getElementById(tabId);
   if (activeTab) {
     activeTab.style.display = 'block';
   }
   
-  const navLinks = document.querySelectorAll('.nav-link');
-  navLinks.forEach(link => {
-    link.classList.remove('active');
-  });
-  const activeLink = document.querySelector(`.nav-link[onclick="showTab('${tabId}')"]`);
-  if (activeLink) {
-    activeLink.classList.add('active');
+  // Nastavíme aktivní třídu pouze na tab navigaci v overseer
+  const tabNav = document.getElementById('overseer-tabs');
+  if (tabNav) {
+    const navLinks = tabNav.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+    });
+    const activeLink = tabNav.querySelector(`.nav-link[onclick="showTab('${tabId}')"]`);
+    if (activeLink) {
+      activeLink.classList.add('active');
+    }
+  }
+  
+  // Podnabídku (sub-nav) zobrazíme jen pokud je aktivní STATUS
+  const subNav = document.getElementById('sub-nav');
+  if (subNav) {
+    if (tabId === 'status') {
+      subNav.style.display = 'block';
+    } else {
+      subNav.style.display = 'none';
+    }
   }
 }
