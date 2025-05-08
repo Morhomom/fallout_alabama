@@ -7,18 +7,31 @@ function generateNavigation() {
     return;
   }
 
-  // Pokud je role Overseer, specifikujeme explicitní mapování stránek
+  // Pokud je role Overseer, definujeme mapování odkazů a vnitřních záložek;
+  // jinak používáme standardní stránky pro hráče.
   const pages = role === 'Overseer'
-    ? { STAT: 'overseer.html', INV: 'overseer.html', DATA: 'overseer.html', MAP: 'overseer.html', RADIO: 'radio.html' }
-    : { STAT: 'stat.html', INV: 'inv.html', DATA: 'data.html', MAP: 'map.html', RADIO: 'radio.html' };
+    ? { 
+        STAT: { page: 'overseer.html', tab: 'status' },
+        INV: { page: 'overseer.html', tab: 'inventory' },
+        DATA: { page: 'overseer.html', tab: 'data-section' },
+        MAP: { page: 'overseer.html', tab: 'map' },
+        RADIO: { page: 'radio.html' }
+      }
+    : { 
+        STAT: { page: 'stat.html' },
+        INV: { page: 'inv.html' },
+        DATA: { page: 'data.html' },
+        MAP: { page: 'map.html' },
+        RADIO: { page: 'radio.html' }
+      };
 
   // Definujeme navigační položky
   const navItems = [
-    { name: 'STAT', page: pages.STAT },
-    { name: 'INV', page: pages.INV },
-    { name: 'DATA', page: pages.DATA },
-    { name: 'MAP', page: pages.MAP },
-    { name: 'RADIO', page: pages.RADIO },
+    { name: 'STAT', config: pages.STAT },
+    { name: 'INV', config: pages.INV },
+    { name: 'DATA', config: pages.DATA },
+    { name: 'MAP', config: pages.MAP },
+    { name: 'RADIO', config: pages.RADIO },
   ];
 
   const navContainer = document.getElementById('dynamic-nav');
@@ -34,22 +47,23 @@ function generateNavigation() {
 
     const a = document.createElement('a');
     a.className = 'nav-link';
-    a.href = item.page;
+    a.href = item.config.page;
     a.textContent = item.name;
 
-    // Přidáme listener – pokud je aktuální stránka shodná s cílovým odkazem,
-    // zabráníme reloadu
+    // Přidáme listener – u Overseera přepneme obsah bez reloadu
     a.addEventListener('click', function(e) {
-      // window.location.pathname může obsahovat také cestu, proto použijeme endsWith
-      if(window.location.pathname.endsWith(item.page)) {
+      if (role === 'Overseer' && item.config.page === 'overseer.html') {
         e.preventDefault();
-        // Zde můžete případně zavolat funkci, která přepne obsah v rámci stránky
-        // například: showTab('status') nebo jinou podle potřeby
+        if (item.config.tab) {
+          // Zavoláme funkci pro přepínání záložek, tu je třeba mít definovanou v overseer.js
+          showTab(item.config.tab);
+        }
       }
+      // U ostatních odkazů necháme standardní chování (náhodou dojde k přesměrování)
     });
 
-    // Nastavení aktivní třídy pro aktuální stránku
-    if (window.location.pathname.includes(item.page)) {
+    // Nastavení aktivní třídy pro aktuální stránku – kontrola na koncovou část URL
+    if(window.location.pathname.endsWith(item.config.page)) {
       a.classList.add('active');
     }
 
