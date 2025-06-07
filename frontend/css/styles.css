@@ -655,3 +655,32 @@ p {
 .player-item button:hover {
     background-color: #0c0;
 }
+
+/* Additional mobile tweaks */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 22px;
+    }
+
+    .character-selection {
+        gap: 10px;
+    }
+
+    .character img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .navbar-light .navbar-nav > li.nav-item > .nav-link {
+        font-size: 24px;
+    }
+
+    .nav.nav-tabs .nav-item .nav-link {
+        font-size: 18px;
+        padding: 3px 10px;
+    }
+
+    .stat-footer {
+        font-size: 18px;
+    }
+}
