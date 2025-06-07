@@ -8,7 +8,7 @@ async function loadInventory() {
     }
 
     try {
-        const response = await fetch(`/api/characters/${playerId}`);
+        const response = await fetch(`/api/characters?id=${playerId}`);
         if (!response.ok) {
             throw new Error('Failed to fetch inventory data');
         }
