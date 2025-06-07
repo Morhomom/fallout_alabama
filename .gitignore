@@ -1,0 +1,21 @@
+node_modules/
+.DS_Store
+.env
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+coverage/
+.nyc_output/
+dist/
+
+# Next.js
+.next/
+
+# Vercel deployment
+.vercel/
+
+# local environment
+*.local
+
+# Mac files
+Icon?
