@@ -1,0 +1,7 @@
+{
+  "name": "fallout_alabama",
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  }
+}
