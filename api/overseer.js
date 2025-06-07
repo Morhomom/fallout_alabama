@@ -7,7 +7,18 @@ export default function handler(req, res) {
         const character = characters.find(c => c.id === id);
         if (!character) return res.status(404).json({ error: 'Character not found' });
 
-        const { hp, ap, currency } = req.body;
+        const {
+            hp,
+            ap,
+            currency,
+            strength,
+            perception,
+            endurance,
+            charisma,
+            intelligence,
+            agility,
+            luck,
+        } = req.body;
 
         // Validace hodnot
         if (hp !== undefined && (hp < 0 || hp > 100)) {
@@ -20,10 +31,40 @@ export default function handler(req, res) {
             return res.status(400).json({ error: 'Currency cannot be negative' });
         }
 
+        const validateStat = (value) => value >= 1 && value <= 10;
+        if (strength !== undefined && !validateStat(strength)) {
+            return res.status(400).json({ error: 'Strength must be between 1 and 10' });
+        }
+        if (perception !== undefined && !validateStat(perception)) {
+            return res.status(400).json({ error: 'Perception must be between 1 and 10' });
+        }
+        if (endurance !== undefined && !validateStat(endurance)) {
+            return res.status(400).json({ error: 'Endurance must be between 1 and 10' });
+        }
+        if (charisma !== undefined && !validateStat(charisma)) {
+            return res.status(400).json({ error: 'Charisma must be between 1 and 10' });
+        }
+        if (intelligence !== undefined && !validateStat(intelligence)) {
+            return res.status(400).json({ error: 'Intelligence must be between 1 and 10' });
+        }
+        if (agility !== undefined && !validateStat(agility)) {
+            return res.status(400).json({ error: 'Agility must be between 1 and 10' });
+        }
+        if (luck !== undefined && !validateStat(luck)) {
+            return res.status(400).json({ error: 'Luck must be between 1 and 10' });
+        }
+
         // Aktualizace atributů
         if (hp !== undefined) character.hp = hp;
         if (ap !== undefined) character.ap = ap;
         if (currency !== undefined) character.currency = currency;
+        if (strength !== undefined) character.strength = strength;
+        if (perception !== undefined) character.perception = perception;
+        if (endurance !== undefined) character.endurance = endurance;
+        if (charisma !== undefined) character.charisma = charisma;
+        if (intelligence !== undefined) character.intelligence = intelligence;
+        if (agility !== undefined) character.agility = agility;
+        if (luck !== undefined) character.luck = luck;
 
         return res.status(200).json(character);
     }

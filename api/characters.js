@@ -20,10 +20,29 @@ export default function handler(req, res) {
             return res.status(404).json({ error: 'Character not found' });
         }
 
-        const { hp, ap, currency } = req.body;
+        const {
+            hp,
+            ap,
+            currency,
+            strength,
+            perception,
+            endurance,
+            charisma,
+            intelligence,
+            agility,
+            luck,
+        } = req.body;
+
         if (hp !== undefined) character.hp = hp;
         if (ap !== undefined) character.ap = ap;
         if (currency !== undefined) character.currency = currency;
+        if (strength !== undefined) character.strength = strength;
+        if (perception !== undefined) character.perception = perception;
+        if (endurance !== undefined) character.endurance = endurance;
+        if (charisma !== undefined) character.charisma = charisma;
+        if (intelligence !== undefined) character.intelligence = intelligence;
+        if (agility !== undefined) character.agility = agility;
+        if (luck !== undefined) character.luck = luck;
 
         return res.status(200).json(character);
     }
