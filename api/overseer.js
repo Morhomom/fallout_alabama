@@ -1,11 +1,13 @@
-import characters from '../backend/data/players.js';
+import { loadPlayers, savePlayers } from '../backend/data/players.js';
 
 export default function handler(req, res) {
     const { id, itemId } = req.query;
+    const characters = loadPlayers();
 
     if (req.method === 'PATCH') {
-        const character = characters.find(c => c.id === id);
-        if (!character) return res.status(404).json({ error: 'Character not found' });
+        const index = characters.findIndex(c => c.id === id);
+        if (index === -1) return res.status(404).json({ error: 'Character not found' });
+        const character = characters[index];
 
         const {
             hp,
@@ -66,6 +68,8 @@ export default function handler(req, res) {
         if (agility !== undefined) character.agility = agility;
         if (luck !== undefined) character.luck = luck;
 
+        savePlayers(characters);
+
         return res.status(200).json(character);
     }
 
@@ -78,6 +82,7 @@ export default function handler(req, res) {
 
         // Přidání předmětu do inventáře
         character.inventory.push(item);
+        savePlayers(characters);
         return res.status(200).json(character);
     }
 
@@ -87,6 +92,7 @@ export default function handler(req, res) {
 
         // Odebrání předmětu z inventáře
         character.inventory = character.inventory.filter((_, index) => index != itemId);
+        savePlayers(characters);
         return res.status(200).json(character);
     }
 
