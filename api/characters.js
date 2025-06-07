@@ -1,23 +1,23 @@
-import { loadPlayers, savePlayers } from '../backend/data/players.js';
+import { getPlayers, getPlayerById, updatePlayer } from '../backend/data/db.js';
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
     const { id } = req.query;
-    const characters = loadPlayers();
 
     if (req.method === 'GET') {
         if (id) {
-            const character = characters.find(c => c.id === id);
+            const character = await getPlayerById(id);
             if (!character) {
                 return res.status(404).json({ error: 'Character not found' });
             }
             return res.status(200).json(character);
         }
+        const characters = await getPlayers();
         return res.status(200).json(characters);
     }
 
     if (req.method === 'PATCH') {
-        const character = characters.find(c => c.id === id);
-        if (!character) {
+        const existing = await getPlayerById(id);
+        if (!existing) {
             return res.status(404).json({ error: 'Character not found' });
         }
 
@@ -34,20 +34,20 @@ export default function handler(req, res) {
             luck,
         } = req.body;
 
-        if (hp !== undefined) character.hp = hp;
-        if (ap !== undefined) character.ap = ap;
-        if (currency !== undefined) character.currency = currency;
-        if (strength !== undefined) character.strength = strength;
-        if (perception !== undefined) character.perception = perception;
-        if (endurance !== undefined) character.endurance = endurance;
-        if (charisma !== undefined) character.charisma = charisma;
-        if (intelligence !== undefined) character.intelligence = intelligence;
-        if (agility !== undefined) character.agility = agility;
-        if (luck !== undefined) character.luck = luck;
+        const updated = await updatePlayer(id, {
+            ...(hp !== undefined && { hp }),
+            ...(ap !== undefined && { ap }),
+            ...(currency !== undefined && { currency }),
+            ...(strength !== undefined && { strength }),
+            ...(perception !== undefined && { perception }),
+            ...(endurance !== undefined && { endurance }),
+            ...(charisma !== undefined && { charisma }),
+            ...(intelligence !== undefined && { intelligence }),
+            ...(agility !== undefined && { agility }),
+            ...(luck !== undefined && { luck }),
+        });
 
-        savePlayers(characters);
-
-        return res.status(200).json(character);
+        return res.status(200).json(updated);
     }
 
     res.setHeader('Allow', ['GET', 'PATCH']);
