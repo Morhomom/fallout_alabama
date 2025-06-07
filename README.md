@@ -25,3 +25,11 @@ npm test
 
 Deployment is done through Vercel.  Running `npx vercel` (and following the prompts) will upload the code and configure the rewrites defined in `vercel.json`.  Once deployed the static files and serverless functions will be served from the generated URL.
 
+## Continuous Deployment
+
+To automate deployments you can link this repository to Vercel. From the Vercel
+dashboard choose **Add New&hellip;** → **Project**, import the GitHub repository
+and complete the setup. Once connected, every merge to the main branch will
+trigger a new deployment automatically. With the GitHub integration enabled you
+no longer need to run `npx vercel` manually.
+
