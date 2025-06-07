@@ -1,16 +1,16 @@
 {
   "rewrites": [
     {
+      "source": "/api/overseer/:path*",
+      "destination": "/api/overseer.js"
+    },
+    {
       "source": "/api/:path*",
       "destination": "/api/:path*"
     },
     {
       "source": "/:path*",
       "destination": "/frontend/:path*"
-    },
-    {
-      "source": "/api/overseer/:path*",
-      "destination": "/backend/api/overseer.js"
     }
   ]
 }
