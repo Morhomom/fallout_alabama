@@ -25,3 +25,15 @@ npm test
 
 Deployment is done through Vercel.  Running `npx vercel` (and following the prompts) will upload the code and configure the rewrites defined in `vercel.json`.  Once deployed the static files and serverless functions will be served from the generated URL.
 
+## Player data persistence
+
+The helper module `backend/data/players.js` copies `players.json` to a file in
+the operating system's temporary directory. API routes mutate this temporary
+copy so that the original JSON remains unchanged. Because Vercel serverless
+functions are stateless, the temporary file is recreated for each invocation and
+whenever a new deployment occurs. Any modifications made through the API are
+therefore lost between invocations.
+
+For persistent player data consider connecting the API to an external data store
+such as a database or Vercel KV/Edge Config.
+
