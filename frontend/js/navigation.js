@@ -27,6 +27,7 @@ function generateNavigation() {
 
   // Definujeme navigační položky
   const navItems = [
+    { name: 'HOME', config: { page: 'index.html' } },
     { name: 'STAT', config: pages.STAT },
     { name: 'INV', config: pages.INV },
     { name: 'DATA', config: pages.DATA },
