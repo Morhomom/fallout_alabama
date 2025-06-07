@@ -1,110 +1,16 @@
-const characters = [
-    {
-        id: 'Engineer',
-        name: 'Engineer',
-        hp: 90,
-        ap: 70,
-        currency: 100,
-        inventory: [],
-        strength: 4,
-        perception: 4,
-        endurance: 4,
-        charisma: 3,
-        intelligence: 3,
-        agility: 3,
-        luck: 2,
-    },
-    {
-        id: 'Ranger',
-        name: 'Ranger',
-        hp: 80,
-        ap: 60,
-        currency: 50,
-        inventory: [],
-        strength: 4,
-        perception: 4,
-        endurance: 4,
-        charisma: 3,
-        intelligence: 3,
-        agility: 3,
-        luck: 2,
-    },
-    {
-        id: 'Overseer',
-        name: 'Overseer',
-        hp: 80,
-        ap: 60,
-        currency: 50,
-        inventory: [],
-        strength: 4,
-        perception: 4,
-        endurance: 4,
-        charisma: 3,
-        intelligence: 3,
-        agility: 3,
-        luck: 2,
-    },
-    {
-        id: 'L.U.C.K.Y',
-        name: 'L.U.C.K.Y',
-        hp: 80,
-        ap: 60,
-        currency: 50,
-        inventory: [],
-        strength: 4,
-        perception: 4,
-        endurance: 4,
-        charisma: 3,
-        intelligence: 3,
-        agility: 3,
-        luck: 2,
-    },
-    {
-        id: 'Medic',
-        name: 'Medic',
-        hp: 80,
-        ap: 60,
-        currency: 50,
-        inventory: [],
-        strength: 4,
-        perception: 4,
-        endurance: 4,
-        charisma: 3,
-        intelligence: 3,
-        agility: 3,
-        luck: 2,
-    },
-    {
-        id: 'Science',
-        name: 'Science',
-        hp: 80,
-        ap: 60,
-        currency: 50,
-        inventory: [],
-        strength: 4,
-        perception: 4,
-        endurance: 4,
-        charisma: 3,
-        intelligence: 3,
-        agility: 3,
-        luck: 2,
-    },
-    {
-        id: 'Broadcaster',
-        name: 'Broadcaster',
-        hp: 80,
-        ap: 60,
-        currency: 50,
-        inventory: [],
-        strength: 4,
-        perception: 4,
-        endurance: 4,
-        charisma: 3,
-        intelligence: 3,
-        agility: 3,
-        luck: 2,
-    },
-    // Další postavy...
-];
+import { readFileSync, writeFileSync } from 'fs';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 
-export default characters;
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const dataPath = join(__dirname, 'players.json');
+
+export function loadPlayers() {
+  return JSON.parse(readFileSync(dataPath, 'utf8'));
+}
+
+export function savePlayers(players) {
+  writeFileSync(dataPath, JSON.stringify(players, null, 2));
+}
+
+export default loadPlayers();

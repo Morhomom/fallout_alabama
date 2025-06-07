@@ -1,7 +1,8 @@
-import characters from '../backend/data/players.js'; // Import dat z players.js
+import { loadPlayers, savePlayers } from '../backend/data/players.js';
 
 export default function handler(req, res) {
     const { id } = req.query;
+    const characters = loadPlayers();
 
     if (req.method === 'GET') {
         if (id) {
@@ -43,6 +44,8 @@ export default function handler(req, res) {
         if (intelligence !== undefined) character.intelligence = intelligence;
         if (agility !== undefined) character.agility = agility;
         if (luck !== undefined) character.luck = luck;
+
+        savePlayers(characters);
 
         return res.status(200).json(character);
     }
