@@ -1,4 +1,4 @@
-import characters from '../../data/players.js';
+import characters from '../backend/data/players.js';
 
 export default function handler(req, res) {
     const { id, itemId } = req.query;
