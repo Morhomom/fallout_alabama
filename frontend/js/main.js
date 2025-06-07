@@ -1,4 +1,4 @@
-﻿function selectRole(role) {
+function selectRole(role) {
   localStorage.setItem('selectedRole', role);
   if (role === 'Overseer') {
     window.location.href = 'overseer.html';

@@ -1,4 +1,4 @@
-﻿const role = localStorage.getItem('selectedRole');
+const role = localStorage.getItem('selectedRole');
 document.getElementById('roleName').innerText = role;
 
 function useAbility() {
