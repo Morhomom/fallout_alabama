@@ -30,3 +30,17 @@ test('GET /api/characters?id=nonexistent returns 404', () => {
   assert.strictEqual(statusCode, 404);
   assert.deepEqual(data, { error: 'Character not found' });
 });
+
+test('PATCH /api/characters updates stats', () => {
+  const req = { method: 'PATCH', query: { id: 'Engineer' }, body: { strength: 7 } };
+  let statusCode;
+  let data;
+  const res = {
+    status(code) { statusCode = code; return this; },
+    json(obj) { data = obj; return this; },
+    setHeader() {}
+  };
+  handler(req, res);
+  assert.strictEqual(statusCode, 200);
+  assert.strictEqual(data.strength, 7);
+});

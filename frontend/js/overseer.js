@@ -37,6 +37,13 @@ function renderPlayerList(players) {
             <p>HP: <span>${player.hp}</span></p>
             <p>AP: <span>${player.ap}</span></p>
             <p>Currency: <span>${player.currency}</span></p>
+            <p data-stat="strength">STR: <span>${player.strength}</span></p>
+            <p data-stat="perception">PER: <span>${player.perception}</span></p>
+            <p data-stat="endurance">END: <span>${player.endurance}</span></p>
+            <p data-stat="charisma">CHA: <span>${player.charisma}</span></p>
+            <p data-stat="intelligence">INT: <span>${player.intelligence}</span></p>
+            <p data-stat="agility">AGI: <span>${player.agility}</span></p>
+            <p data-stat="luck">LCK: <span>${player.luck}</span></p>
             <button onclick="editPlayer('${player.id}')">Edit</button>
         `;
         playerList.appendChild(playerDiv);
@@ -49,14 +56,28 @@ function editPlayer(playerId) {
     const hp = playerDiv.querySelector('p:nth-child(2) span').innerText;
     const ap = playerDiv.querySelector('p:nth-child(3) span').innerText;
     const currency = playerDiv.querySelector('p:nth-child(4) span').innerText;
+    const strength = playerDiv.querySelector('p[data-stat="strength"] span').innerText;
+    const perception = playerDiv.querySelector('p[data-stat="perception"] span').innerText;
+    const endurance = playerDiv.querySelector('p[data-stat="endurance"] span').innerText;
+    const charisma = playerDiv.querySelector('p[data-stat="charisma"] span').innerText;
+    const intelligence = playerDiv.querySelector('p[data-stat="intelligence"] span').innerText;
+    const agility = playerDiv.querySelector('p[data-stat="agility"] span').innerText;
+    const luck = playerDiv.querySelector('p[data-stat="luck"] span').innerText;
 
     playerDiv.innerHTML = `
         <h3>${playerId}</h3>
         <label>HP: <input type="number" id="hp-${playerId}" value="${hp}" /></label>
         <label>AP: <input type="number" id="ap-${playerId}" value="${ap}" /></label>
         <label>Currency: <input type="number" id="currency-${playerId}" value="${currency}" /></label>
+        <label>STR: <input type="number" id="strength-${playerId}" value="${strength}" /></label>
+        <label>PER: <input type="number" id="perception-${playerId}" value="${perception}" /></label>
+        <label>END: <input type="number" id="endurance-${playerId}" value="${endurance}" /></label>
+        <label>CHA: <input type="number" id="charisma-${playerId}" value="${charisma}" /></label>
+        <label>INT: <input type="number" id="intelligence-${playerId}" value="${intelligence}" /></label>
+        <label>AGI: <input type="number" id="agility-${playerId}" value="${agility}" /></label>
+        <label>LCK: <input type="number" id="luck-${playerId}" value="${luck}" /></label>
         <button onclick="savePlayer('${playerId}')">Save</button>
-        <button onclick="cancelEdit('${playerId}', ${hp}, ${ap}, ${currency})">Cancel</button>
+        <button onclick="cancelEdit('${playerId}')">Cancel</button>
     `;
 }
 
@@ -65,6 +86,13 @@ async function savePlayer(playerId) {
     const hp = document.getElementById(`hp-${playerId}`).value;
     const ap = document.getElementById(`ap-${playerId}`).value;
     const currency = document.getElementById(`currency-${playerId}`).value;
+    const strength = document.getElementById(`strength-${playerId}`).value;
+    const perception = document.getElementById(`perception-${playerId}`).value;
+    const endurance = document.getElementById(`endurance-${playerId}`).value;
+    const charisma = document.getElementById(`charisma-${playerId}`).value;
+    const intelligence = document.getElementById(`intelligence-${playerId}`).value;
+    const agility = document.getElementById(`agility-${playerId}`).value;
+    const luck = document.getElementById(`luck-${playerId}`).value;
 
     try {
         const response = await fetch(`/api/overseer?id=${playerId}`, {
@@ -72,7 +100,18 @@ async function savePlayer(playerId) {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ hp: Number(hp), ap: Number(ap), currency: Number(currency) }),
+            body: JSON.stringify({
+                hp: Number(hp),
+                ap: Number(ap),
+                currency: Number(currency),
+                strength: Number(strength),
+                perception: Number(perception),
+                endurance: Number(endurance),
+                charisma: Number(charisma),
+                intelligence: Number(intelligence),
+                agility: Number(agility),
+                luck: Number(luck),
+            }),
         });
 
         if (!response.ok) {
@@ -88,15 +127,8 @@ async function savePlayer(playerId) {
 }
 
 // Zrušení úprav
-function cancelEdit(playerId, hp, ap, currency) {
-    const playerDiv = document.querySelector(`.player-item button[onclick="savePlayer('${playerId}')"]`).parentElement;
-    playerDiv.innerHTML = `
-        <h3>${playerId}</h3>
-        <p>HP: <span>${hp}</span></p>
-        <p>AP: <span>${ap}</span></p>
-        <p>Currency: <span>${currency}</span></p>
-        <button onclick="editPlayer('${playerId}')">Edit</button>
-    `;
+function cancelEdit(playerId) {
+    loadPlayers();
 }
 
 // Načtení hráčů při načtení stránky
