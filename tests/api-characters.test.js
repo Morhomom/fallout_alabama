@@ -1,9 +1,18 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { existsSync, unlinkSync } from 'fs';
+import { tmpdir } from 'os';
+import { join } from 'path';
 import handler from '../api/characters.js';
 import characters from '../backend/data/players.js';
 
-test('GET /api/characters returns list', () => {
+const tmpPath = join(tmpdir(), 'players.json');
+
+test.beforeEach(() => {
+  if (existsSync(tmpPath)) unlinkSync(tmpPath);
+});
+
+test('GET /api/characters returns list', { concurrency: false }, () => {
   const req = { method: 'GET', query: {} };
   let statusCode;
   let data;
@@ -17,7 +26,7 @@ test('GET /api/characters returns list', () => {
   assert.deepEqual(data, characters);
 });
 
-test('GET /api/characters?id=nonexistent returns 404', () => {
+test('GET /api/characters?id=nonexistent returns 404', { concurrency: false }, () => {
   const req = { method: 'GET', query: { id: 'nonexistent' } };
   let statusCode;
   let data;
@@ -31,7 +40,7 @@ test('GET /api/characters?id=nonexistent returns 404', () => {
   assert.deepEqual(data, { error: 'Character not found' });
 });
 
-test('PATCH /api/characters updates stats', () => {
+test('PATCH /api/characters updates stats', { concurrency: false }, () => {
   const req = { method: 'PATCH', query: { id: 'Engineer' }, body: { strength: 7 } };
   let statusCode;
   let data;
