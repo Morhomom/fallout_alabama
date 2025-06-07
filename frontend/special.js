@@ -1,5 +1,5 @@
 $(document).ready(function() {  
-    var special_characterstics = [
+    var special_characteristics = [
         {
             "name": "empty",
             "desc": "",
@@ -51,33 +51,33 @@ $(document).ready(function() {
         var current_item = $(this).attr("class");
         // console.log(current_item);
 
-        for(spec in special_characterstics){
-            if(special_characterstics[spec].name == current_item){
+        for(spec in special_characteristics){
+            if(special_characteristics[spec].name == current_item){
                 // console.log(current_item);
 
                 var container= $(".special-description");
                 var img_container= $(".item-image");
-                container.find(".desc").html(special_characterstics[spec].desc);
-                img_container.html(special_characterstics[spec].image);
+                container.find(".desc").html(special_characteristics[spec].desc);
+                img_container.html(special_characteristics[spec].image);
             }
         }
     });
     $(".spc-list a").on('mouseleave',function(e) {
         var container= $(".special-description");
         var img_container= $(".item-image");
-        container.find(".desc").html(special_characterstics[0].desc);
+        container.find(".desc").html(special_characteristics[0].desc);
         img_container.html("");
     });
 
     // $('.spc-list a').on('mouseleave',function(e) {
     //     var current_item = $(':focus');
     //     current_item = $(':focus').attr('class');
-    //     for(spec in special_characterstics) {
-    //       if(special_characterstics[spec].name + ' active' == current_item){
+    //     for(spec in special_characteristics) {
+    //       if(special_characteristics[spec].name + ' active' == current_item){
     //         let container = $('.special-description');
     //         let img_container = $('.item-image');
-    //         container.find(".desc").html(special_characterstics[spec].desc);
-    //         img_container.html(special_characterstics[spec].image);
+    //         container.find(".desc").html(special_characteristics[spec].desc);
+    //         img_container.html(special_characteristics[spec].image);
     //       }
     //     }
     // });
