@@ -11,6 +11,18 @@ npm install     # installs any dependencies
 npx vercel dev  # serves the frontend and API
 ```
 
+## Database initialization
+
+If you want to seed a PostgreSQL database, provide a `DATABASE_URL` environment
+variable and run:
+
+```bash
+npm run setup-db
+```
+
+This step is optional. Without a database the API falls back to a temporary JSON
+file and all changes will be ephemeral.
+
 Opening the development address in your browser will load the pages from `frontend/` and requests to `/api/*` will invoke the functions from `api/` or `backend/` as configured in `vercel.json`.
 
 ## Running tests
