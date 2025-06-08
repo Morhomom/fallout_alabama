@@ -57,13 +57,4 @@ The value you enter for `DATABASE_URL` should match the connection string shown
 in the Vercel dashboard. After redeploying the project the API will store player
 information inside this database.
 
-Once `DATABASE_URL` is set you can populate the table with the sample data by
-running:
-
-```bash
-npm run setup-db
-```
-
-This script creates the `players` table if it does not exist and inserts the
-records from `backend/data/players.json`.
 
