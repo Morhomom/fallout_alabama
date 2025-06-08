@@ -1,11 +1,13 @@
-import { getPlayerById, updatePlayer, addItem, removeItem } from '../backend/data/db.js';
+import { loadPlayers, savePlayers } from '../backend/data/players.js';
 
-export default async function handler(req, res) {
+export default function handler(req, res) {
     const { id, itemId } = req.query;
+    const characters = loadPlayers();
 
     if (req.method === 'PATCH') {
-        const character = await getPlayerById(id);
-        if (!character) return res.status(404).json({ error: 'Character not found' });
+        const index = characters.findIndex(c => c.id === id);
+        if (index === -1) return res.status(404).json({ error: 'Character not found' });
+        const character = characters[index];
 
         const {
             hp,
@@ -54,35 +56,44 @@ export default async function handler(req, res) {
             return res.status(400).json({ error: 'Luck must be between 1 and 10' });
         }
 
-        const updated = await updatePlayer(id, {
-            ...(hp !== undefined && { hp }),
-            ...(ap !== undefined && { ap }),
-            ...(currency !== undefined && { currency }),
-            ...(strength !== undefined && { strength }),
-            ...(perception !== undefined && { perception }),
-            ...(endurance !== undefined && { endurance }),
-            ...(charisma !== undefined && { charisma }),
-            ...(intelligence !== undefined && { intelligence }),
-            ...(agility !== undefined && { agility }),
-            ...(luck !== undefined && { luck }),
-        });
+        // Aktualizace atributů
+        if (hp !== undefined) character.hp = hp;
+        if (ap !== undefined) character.ap = ap;
+        if (currency !== undefined) character.currency = currency;
+        if (strength !== undefined) character.strength = strength;
+        if (perception !== undefined) character.perception = perception;
+        if (endurance !== undefined) character.endurance = endurance;
+        if (charisma !== undefined) character.charisma = charisma;
+        if (intelligence !== undefined) character.intelligence = intelligence;
+        if (agility !== undefined) character.agility = agility;
+        if (luck !== undefined) character.luck = luck;
 
-        return res.status(200).json(updated);
+        savePlayers(characters);
+
+        return res.status(200).json(character);
     }
 
     if (req.method === 'POST') {
+        const character = characters.find(c => c.id === id);
+        if (!character) return res.status(404).json({ error: 'Character not found' });
+
         const { item } = req.body;
         if (!item) return res.status(400).json({ error: 'Item is required' });
 
-        const updated = await addItem(id, item);
-        if (!updated) return res.status(404).json({ error: 'Character not found' });
-        return res.status(200).json(updated);
+        // Přidání předmětu do inventáře
+        character.inventory.push(item);
+        savePlayers(characters);
+        return res.status(200).json(character);
     }
 
     if (req.method === 'DELETE') {
-        const updated = await removeItem(id, itemId);
-        if (!updated) return res.status(404).json({ error: 'Character not found' });
-        return res.status(200).json(updated);
+        const character = characters.find(c => c.id === id);
+        if (!character) return res.status(404).json({ error: 'Character not found' });
+
+        // Odebrání předmětu z inventáře
+        character.inventory = character.inventory.filter((_, index) => index != itemId);
+        savePlayers(characters);
+        return res.status(200).json(character);
     }
 
     res.setHeader('Allow', ['PATCH', 'POST', 'DELETE']);
