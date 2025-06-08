@@ -37,3 +37,33 @@ therefore lost between invocations.
 For persistent player data consider connecting the API to an external data store
 such as a database or Vercel KV/Edge Config.
 
+## Database configuration
+
+The API will look for a `DATABASE_URL` environment variable pointing to a
+PostgreSQL database. When omitted, it falls back to the temporary JSON file used
+in the earlier version of this project. This makes local development work
+without any additional setup while allowing production deployments to persist
+data.
+
+### Quick start with Vercel Postgres
+
+```bash
+vercel postgres create fallout-db
+# once the database is created retrieve the connection string
+vercel env add DATABASE_URL
+```
+
+The value you enter for `DATABASE_URL` should match the connection string shown
+in the Vercel dashboard. After redeploying the project the API will store player
+information inside this database.
+
+Once `DATABASE_URL` is set you can populate the table with the sample data by
+running:
+
+```bash
+npm run setup-db
+```
+
+This script creates the `players` table if it does not exist and inserts the
+records from `backend/data/players.json`.
+

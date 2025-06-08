@@ -2,6 +2,10 @@
   "name": "fallout_alabama",
   "type": "module",
   "scripts": {
-    "test": "node --test --test-concurrency=1"
+    "test": "node --test --test-concurrency=1",
+    "setup-db": "node backend/data/setup-db.js"
+  },
+  "dependencies": {
+    "pg": "^8.11.3"
   }
 }
